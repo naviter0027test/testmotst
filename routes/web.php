@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'member', 'middleware' => ['check.member']], function() {
+
+    Route::get('login', 'Member\MemberController@loginPage');
+    Route::post('login', 'Member\MemberController@login');
+    Route::get('home', 'Member\MemberController@home');
+    Route::get('/', 'Member\MemberController@index');
+});

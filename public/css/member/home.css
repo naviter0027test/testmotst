@@ -1,0 +1,53 @@
+.small-box > .inner {
+    padding: 10px;
+}
+
+.small-box h3 {
+    font-size: 38px;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    white-space: nowrap;
+    padding: 0;
+    border: none;
+}
+
+.small-box p {
+    font-size: 15px;
+}
+
+.small-box > .small-box-footer {
+    position: relative;
+    text-align: center;
+    padding: 3px 0;
+    display: block;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.small-box > .small-box-footer:hover {
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.bg-red {
+    background: #dd4b39 !important;
+    color: #fff !important;
+}
+
+.bg-yellow {
+    background: #f39c12 !important;
+    color: #fff !important;
+}
+
+.flot-jobtitle {
+    display: inline-block;
+    margin-top: 10px;
+    min-width: 1000px;
+    width: 100%;
+    height: 300px;
+}
+
+.pie-industry {
+    display: inline-block;
+    margin-top: 10px;
+    width: 50%;
+    height: 300px;
+}
