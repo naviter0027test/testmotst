@@ -5,13 +5,16 @@
         <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
         <link href='/lib/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet' />
         <link href='/lib/bootstrap/dist/css/bootstrap-theme.min.css' rel='stylesheet' />
-        <link href='/css/admin/body.css' rel='stylesheet' />
+        <link href='/css/member/body.css' rel='stylesheet' />
         <link href='/css/member/home.css' rel='stylesheet' />
     </head>
     <body>
 @include('member.layout.menu')
         <div class="content">
-            <h3>首頁</h3>
+            <div class="content-header">
+                <span>首頁</span>
+            </div>
+            <div class="content-emp">
         </div>
 @include('member.layout.footer')
     </body>
