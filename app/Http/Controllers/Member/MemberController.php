@@ -64,4 +64,14 @@ class MemberController extends Controller
             $result['errMsg'] = '帳密有誤';
         return view('member.login', ['result' => $result]);
     }
+
+    public function logout(Request $request) {
+        Session::flush();
+        return redirect('/member/login');
+    }
+
+    public function passwordPage(Request $request) {
+        $member = Session::get('member');
+        return view('member.password', ['member' => $member]);
+    }
 }

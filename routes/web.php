@@ -23,4 +23,8 @@ Route::group(['prefix' => 'member', 'middleware' => ['check.member']], function(
     Route::post('login', 'Member\MemberController@login');
     Route::get('home', 'Member\MemberController@home');
     Route::get('/', 'Member\MemberController@index');
+    Route::get('logout', 'Member\MemberController@logout');
+
+    Route::get('password', 'Member\MemberController@passwordPage');
+    Route::post('password', 'Member\MemberController@passwordUpdate');
 });

@@ -3,16 +3,16 @@ body {
 }
 
 .btn {
-    box-shadow: 0 1px 0 #0073aa,0 0 2px 1px #33b3db;
-    text-shadow: 0 -1px 1px #006799,1px 0 1px #006799,0 1px 1px #006799,-1px 0 1px #006799;
-    background: #0085ba;
-    border-color: #006799;
-    color: white;
+    box-shadow: 0 1px 0 #99a6e6,0 0 2px 1px #99a6e6;
+    text-shadow: 0 -1px 1px #2f47be,1px 0 1px #2f47be,0 1px 1px #2f47be,-1px 0 1px #2f47be;
+    background: #283da4;
+    border-color: #2f47be;
+    color: #99a6e6;
 }
 
 .btn:hover {
-    color: white;
-    background: #008ec2;
+    color: #99a6e6;
+    background: #324ccd;
 }
 
 .logo span {
@@ -96,7 +96,6 @@ body {
 .content .form1 {
     padding: 10px;
 
-    background: white;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
