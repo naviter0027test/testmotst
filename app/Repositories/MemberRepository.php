@@ -18,4 +18,15 @@ class MemberRepository
         }
         return false;
     }
+
+    public function updatePassword($params) {
+        $member = Member::where('account', '=', $params['account'])
+            ->where('pass', '=', md5($params['passwordOld']))
+            ->first();
+        if(isset($member->id) == false) {
+            throw new Exception('舊密碼輸入錯誤');
+        }
+        $member->pass = md5($params['password']);
+        $member->save();
+    }
 }

@@ -74,4 +74,24 @@ class MemberController extends Controller
         $member = Session::get('member');
         return view('member.password', ['member' => $member]);
     }
+
+    public function passwordUpdate(Request $request) {
+        $member = Session::get('member');
+        $params = $request->all();
+        $params['account'] = $member->account;
+        $result = [
+            'result' => true,
+            'msg' => 'success',
+        ];
+
+        try {
+            $memberRepository = new MemberRepository();
+            $memberRepository->updatePassword($params);
+        }
+        catch(Exception $e) {
+            $result['result'] = false;
+            $result['msg'] = $e->getMessage();
+        }
+        return view('member.proccess', ['member' => $member, 'result' => $result]);
+    }
 }
