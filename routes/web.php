@@ -28,5 +28,10 @@ Route::group(['prefix' => 'member', 'middleware' => ['check.member']], function(
     Route::get('password', 'Member\MemberController@passwordPage');
     Route::post('password', 'Member\MemberController@passwordUpdate');
 
-    Route::get('project/example', 'Member\ProjectController@example');
+    Route::group(['prefix' => 'project'], function() {
+        Route::get('example', 'Member\ProjectController@example');
+        Route::get('index', 'Member\ProjectController@index');
+        Route::get('create', 'Member\ProjectController@createPage');
+        Route::post('create', 'Member\ProjectController@create');
+    });
 });

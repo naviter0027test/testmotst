@@ -11,6 +11,10 @@
         密碼更改</a>
     </div>
     <div class="menu1">
+        <a href="/member/project/index" class="{{ strpos(\Request::path(), 'member/project/index') === false ? '' : 'clicked' }} glyphicon glyphicon-tasks">
+        專案管理</a>
+    </div>
+    <div class="menu1">
         <a href="/member/logout" class="glyphicon glyphicon-share logout">
         登出</a>
     </div>

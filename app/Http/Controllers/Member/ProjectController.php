@@ -11,7 +11,7 @@ use Exception;
 
 class ProjectController extends Controller
 {
-    public function example() {
+    public function example(Request $request) {
         $result = [
             [
                 'name' => "AAA",
@@ -29,5 +29,39 @@ class ProjectController extends Controller
             ],
         ];
         return json_encode($result);
+    }
+
+    public function index(Request $request) {
+        $member = Session::get('member');
+        $params = $request->all();
+        $validate = Validator::make($request->all(), [
+            'nowPage' => 'integer',
+            'offset' => 'integer',
+        ]);
+
+        if($validate->fails()) {
+            $res['status'] = false;
+            $res['message'] = $validate->errors();
+            return response()->json($res, 200);
+        }
+
+        $result = [
+            'result' => true,
+            'msg' => 'success',
+        ];
+        try {
+        }
+        catch(Exception $e) {
+            $result['result'] = false;
+            $result['msg'] = $e->getMessage();
+            return view('member.proccess', ['member' => $member, 'result' => $result]);
+        }
+        return view('member.project.index', ['member' => $member, 'result' => $result]);
+    }
+
+    public function createPage(Request $request) {
+    }
+
+    public function create(Request $request) {
     }
 }

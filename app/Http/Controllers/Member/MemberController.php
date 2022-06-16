@@ -38,9 +38,9 @@ class MemberController extends Controller
         catch(Exception $e) {
             $result['result'] = false;
             $result['msg'] = $e->getMessage();
-            return view('member.proccessResult', ['adm' => $member, 'result' => $result]);
+            return view('member.proccess', ['member' => $member, 'result' => $result]);
         }
-        return view('member.home', ['adm' => $member, 'result' => $result]);
+        return view('member.home', ['member' => $member, 'result' => $result]);
     }
 
     public function loginPage(Request $request) {
