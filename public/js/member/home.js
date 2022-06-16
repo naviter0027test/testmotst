@@ -2,7 +2,8 @@ $(document).ready(function() {
     $('.gantt').gantt({
         'source': "/member/project/example",
         'scale': "weeks",
-        'minScale': "months",
+        'maxScale': "months",
+        'minScale': "days",
         'onItemClick': function(data) {
             console.log(data);
         },

@@ -21,6 +21,9 @@ class AddTableProject extends Migration
             $table->mediumText('requirement')
                 ->nullable()
                 ->comment('需求');
+            $table->integer('isPublic')
+                ->default(0)
+                ->comment('是否開放 0:否 1:是');
             $table->timestamps();
         });
     }
