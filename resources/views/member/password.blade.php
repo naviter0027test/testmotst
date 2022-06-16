@@ -39,5 +39,6 @@
     <script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="/lib/jquery-validation/dist/additional-methods.min.js"></script>
     <script src="/lib/jquery-validation/dist/localization/messages_zh_TW.min.js"></script>
+    <script src="/js/member/logout.js"></script>
     <script src="/js/member/password.js"></script>
 </html>

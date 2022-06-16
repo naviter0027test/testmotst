@@ -19,4 +19,5 @@
 @include('member.layout.footer')
     </body>
     <script src="/lib/jquery-2.1.4.min.js"></script>
+    <script src="/js/member/logout.js"></script>
 </html>

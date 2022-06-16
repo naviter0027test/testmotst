@@ -11,7 +11,11 @@
         密碼更改</a>
     </div>
     <div class="menu1">
-        <a href="/member/logout" class="glyphicon glyphicon-share">
+        <a href="/member/logout" class="glyphicon glyphicon-share logout">
         登出</a>
+    </div>
+    <div class="menu1">
+        <a href="https://cdpn.io/havardob/fullpage/PopKJRE" class="glyphicon glyphicon-globe" target="_blank">
+        風格參考網站</a>
     </div>
 </div>
