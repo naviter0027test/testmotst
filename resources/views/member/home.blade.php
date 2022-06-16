@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
         <link href='/lib/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet' />
         <link href='/lib/bootstrap/dist/css/bootstrap-theme.min.css' rel='stylesheet' />
+        <link href='/lib/prettify.min.css' rel='stylesheet' />
+        <link href='/lib/jquery.gantt.css' rel='stylesheet' />
         <link href='/css/member/body.css' rel='stylesheet' />
         <link href='/css/member/home.css' rel='stylesheet' />
     </head>
@@ -14,10 +16,15 @@
             <div class="content-header">
                 <span>首頁</span>
             </div>
-            <div class="content-emp">
+            <div class="">
+                <div class="gantt">
+                </div>
+            </div>
         </div>
 @include('member.layout.footer')
     </body>
     <script src="/lib/jquery-2.1.4.min.js"></script>
+    <script src="/lib/jquery.fn.gantt.js"></script>
     <script src="/js/member/logout.js"></script>
+    <script src="/js/member/home.js"></script>
 </html>
