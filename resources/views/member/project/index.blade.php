@@ -29,9 +29,33 @@
                     </tr>
                 </thead>
                 <tbody>
+                @if(isset($result['projects']))
+                @foreach($result['projects'] as $project)
+                    <tr>
+                        <td>{{ $project->title }}</td>
+                        <td>{{ $project->isPublicShow }}</td>
+                        <td>{{ $project->created_at }}</td>
+                        <td>{{ $project->updated_at }}</td>
+                        <td>
+                            <a href='/member/task/index/{{ $project->id }}' class="glyphicon glyphicon-list" alt="查看任務"></a>
+                            <a href='/member/project/edit/{{ $project->id }}' class="glyphicon glyphicon-pencil" alt="專案編輯"></a>
+                            <a href='/member/project/remove/{{ $project->id }}' class="glyphicon glyphicon-remove projectRemove" alt="專案刪除"></a>
+                        </td>
+                    </tr>
+                @endforeach
+                @endif
                 </tbody>
             </table>
             <div class="pagination paginationCenter">
+            @if(isset($result['amount']))
+            @for($i = 0; $i < ceil($result['amount'] / $result['offset']); ++$i)
+                @if(($i+1) == $result['nowPage'])
+                <label>{{ $i+1 }}</label>
+                @elseif(($i+1) != $result['nowPage'] && abs($i+1-$result['nowPage']) < 5)
+                <a href="/member/project/?nowPage={{ $i+1 }}&{{ http_build_query($params) }}">{{ $i+1 }}</a>
+                @endif
+            @endfor
+            @endif
             </div>
         </div>
 @include('member.layout.footer')

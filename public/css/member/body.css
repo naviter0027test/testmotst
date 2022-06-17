@@ -141,6 +141,14 @@ body {
     border: 1px solid #ddd;
 }
 
+.content .form1 textarea {
+    height: 350px;
+}
+
+.content .form1 input[type=radio] {
+    width: auto;
+}
+
 .content .custPic {
     width: 150px;
 }

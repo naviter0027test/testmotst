@@ -34,6 +34,8 @@ class ProjectController extends Controller
     public function index(Request $request) {
         $member = Session::get('member');
         $params = $request->all();
+        $params['nowPage'] = isset($params['nowPage']) ? $params['nowPage'] : 1;
+        $params['offset'] = isset($params['offset']) ? $params['offset'] : 10;
         $validate = Validator::make($request->all(), [
             'nowPage' => 'integer',
             'offset' => 'integer',
@@ -50,18 +52,52 @@ class ProjectController extends Controller
             'msg' => 'success',
         ];
         try {
+            $projectRepository = new ProjectRepository();
+            $result['projects'] = $projectRepository->lists($params);
+            $result['amount'] = $projectRepository->listsAmount($params);
+            $result['nowPage'] = $params['nowPage'];
+            $result['offset'] = $params['offset'];
         }
         catch(Exception $e) {
             $result['result'] = false;
             $result['msg'] = $e->getMessage();
             return view('member.proccess', ['member' => $member, 'result' => $result]);
         }
-        return view('member.project.index', ['member' => $member, 'result' => $result]);
+        return view('member.project.index', ['member' => $member, 'result' => $result, 'params' => $params]);
     }
 
     public function createPage(Request $request) {
+        $member = Session::get('member');
+        $result = [
+            'result' => true,
+            'msg' => 'success',
+        ];
+        try {
+        }
+        catch(Exception $e) {
+            $result['result'] = false;
+            $result['msg'] = $e->getMessage();
+            return view('member.proccess', ['member' => $member, 'result' => $result]);
+        }
+        return view('member.project.create', ['member' => $member, 'result' => $result]);
     }
 
     public function create(Request $request) {
+        $member = Session::get('member');
+        $result = [
+            'result' => true,
+            'msg' => 'success',
+        ];
+        try {
+            $params = $request->all();
+            $projectRepository = new ProjectRepository();
+            $projectRepository->create($params);
+        }
+        catch(Exception $e) {
+            $result['result'] = false;
+            $result['msg'] = $e->getMessage();
+            return view('member.proccess', ['member' => $member, 'result' => $result]);
+        }
+        return view('member.proccess', ['member' => $member, 'result' => $result]);
     }
 }
