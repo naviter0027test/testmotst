@@ -33,5 +33,8 @@ Route::group(['prefix' => 'member', 'middleware' => ['check.member']], function(
         Route::get('index', 'Member\ProjectController@index');
         Route::get('create', 'Member\ProjectController@createPage');
         Route::post('create', 'Member\ProjectController@create');
+        Route::get('remove/{id}', 'Member\ProjectController@remove');
+        Route::get('edit/{id}', 'Member\ProjectController@edit');
+        Route::post('edit/{id}', 'Member\ProjectController@update');
     });
 });

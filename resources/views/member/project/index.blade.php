@@ -39,7 +39,7 @@
                         <td>
                             <a href='/member/task/index/{{ $project->id }}' class="glyphicon glyphicon-list" alt="查看任務"></a>
                             <a href='/member/project/edit/{{ $project->id }}' class="glyphicon glyphicon-pencil" alt="專案編輯"></a>
-                            <a href='/member/project/remove/{{ $project->id }}' class="glyphicon glyphicon-remove projectRemove" alt="專案刪除"></a>
+                            <a href='/member/project/remove/{{ $project->id }}' class="glyphicon glyphicon-remove del" alt="專案刪除"></a>
                         </td>
                     </tr>
                 @endforeach
@@ -62,5 +62,6 @@
     </body>
     <script src="/lib/jquery-2.1.4.min.js"></script>
     <script src="/lib/jquery.fn.gantt.js"></script>
+    <script src="/js/member/project/index.js"></script>
     <script src="/js/member/logout.js"></script>
 </html>

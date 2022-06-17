@@ -100,4 +100,27 @@ class ProjectController extends Controller
         }
         return view('member.proccess', ['member' => $member, 'result' => $result]);
     }
+
+    public function remove($id) {
+        $member = Session::get('member');
+        $result = [
+            'result' => true,
+            'msg' => 'success',
+        ];
+        try {
+            $projectRepository = new ProjectRepository();
+            $projectRepository->remove($id);
+        }
+        catch(Exception $e) {
+            $result['result'] = false;
+            $result['msg'] = $e->getMessage();
+        }
+        return view('member.proccess', ['member' => $member, 'result' => $result]);
+    }
+
+    public function edit($id) {
+    }
+
+    public function update($id) {
+    }
 }

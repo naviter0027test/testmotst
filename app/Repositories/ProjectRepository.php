@@ -42,4 +42,8 @@ class ProjectRepository
         $projectQuery = Project::orderBy('created_at', 'desc');
         return $projectQuery->count();
     }
+
+    public function remove($id) {
+        Project::where('id', $id)->delete();
+    }
 }
