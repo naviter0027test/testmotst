@@ -24,4 +24,19 @@ class TaskRepository
         $taskQuery = Task::orderBy('created_at', 'desc');
         return $taskQuery->count();
     }
+
+    public function create($params) {
+        $nowDate = date('Y-m-d H:i:s');
+
+        $task = new Task();
+        $task->name = $params['name'];
+        $task->projectId = $params['projectId'];
+        $task->owner = $params['owner'];
+        $task->start = $params['start'];
+        $task->end = $params['end'];
+        $task->hours = $params['hours'];
+        $task->minutes = $params['minutes'];
+        $task->desc = $params['desc'];
+        $task->save();
+    }
 }

@@ -36,8 +36,9 @@ class TaskController extends Controller
         ];
         try {
             $projectRepository = new ProjectRepository();
-            $taskRepository = new TaskRepository();
             $result['project'] = $projectRepository->getById($projectId);
+
+            $taskRepository = new TaskRepository();
             $result['tasks'] = $taskRepository->lists($params);
             $result['amount'] = $taskRepository->listsAmount($params);
             $result['nowPage'] = $params['nowPage'];
@@ -49,5 +50,46 @@ class TaskController extends Controller
             return view('member.proccess', ['member' => $member, 'result' => $result]);
         }
         return view('member.task.index', ['member' => $member, 'result' => $result, 'params' => $params]);
+    }
+
+    public function createPage(Request $request, $projectId) {
+        $member = Session::get('member');
+        $result = [
+            'result' => true,
+            'msg' => 'success',
+            'projectId' => $projectId,
+        ];
+        try {
+            $projectRepository = new ProjectRepository();
+            $result['project'] = $projectRepository->getById($projectId);
+
+        }
+        catch(Exception $e) {
+            $result['result'] = false;
+            $result['msg'] = $e->getMessage();
+            return view('member.proccess', ['member' => $member, 'result' => $result]);
+        }
+        return view('member.task.create', ['member' => $member, 'result' => $result]);
+    }
+
+    public function create(Request $request, $projectId) {
+        $member = Session::get('member');
+        $result = [
+            'result' => true,
+            'msg' => 'success',
+            'projectId' => $projectId,
+        ];
+        try {
+            $params = $request->all();
+            $params['projectId'] = $projectId;
+            $params['owner'] = $member->id;
+            $taskRepository = new TaskRepository();
+            $taskRepository->create($params);
+        }
+        catch(Exception $e) {
+            $result['result'] = false;
+            $result['msg'] = $e->getMessage();
+        }
+        return view('member.task.proccess', ['member' => $member, 'result' => $result]);
     }
 }

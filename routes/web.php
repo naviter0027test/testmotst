@@ -39,6 +39,8 @@ Route::group(['prefix' => 'member', 'middleware' => ['check.member']], function(
 
         Route::group(['prefix' => 'task'], function() {
             Route::get('index/{projectId}', 'Member\TaskController@index');
+            Route::get('{projectId}/create', 'Member\TaskController@createPage');
+            Route::post('{projectId}/create', 'Member\TaskController@create');
         });
     });
 });
