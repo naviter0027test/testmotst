@@ -18,6 +18,7 @@ class TaskController extends Controller
         $params = $request->all();
         $params['nowPage'] = isset($params['nowPage']) ? $params['nowPage'] : 1;
         $params['offset'] = isset($params['offset']) ? $params['offset'] : 10;
+        $params['projectId'] = $projectId;
         $validate = Validator::make($request->all(), [
             'nowPage' => 'integer',
             'offset' => 'integer',
@@ -85,6 +86,49 @@ class TaskController extends Controller
             $params['owner'] = $member->id;
             $taskRepository = new TaskRepository();
             $taskRepository->create($params);
+        }
+        catch(Exception $e) {
+            $result['result'] = false;
+            $result['msg'] = $e->getMessage();
+        }
+        return view('member.task.proccess', ['member' => $member, 'result' => $result]);
+    }
+
+    public function edit(Request $request, $projectId, $taskId) {
+        $member = Session::get('member');
+        $result = [
+            'result' => true,
+            'msg' => 'success',
+            'projectId' => $projectId,
+            'taskId' => $taskId,
+        ];
+        try {
+            $projectRepository = new ProjectRepository();
+            $result['project'] = $projectRepository->getById($projectId);
+
+            $taskRepository = new TaskRepository();
+            $result['task'] = $taskRepository->getById($taskId);
+        }
+        catch(Exception $e) {
+            $result['result'] = false;
+            $result['msg'] = $e->getMessage();
+        }
+        return view('member.task.edit', ['member' => $member, 'result' => $result]);
+    }
+
+    public function update(Request $request, $projectId, $taskId) {
+    }
+
+    public function remove(Request $request, $projectId, $taskId) {
+        $member = Session::get('member');
+        $result = [
+            'result' => true,
+            'msg' => 'success',
+            'projectId' => $projectId,
+        ];
+        try {
+            $taskRepository = new TaskRepository();
+            $taskRepository->remove($taskId);
         }
         catch(Exception $e) {
             $result['result'] = false;

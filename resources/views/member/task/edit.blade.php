@@ -13,34 +13,34 @@
             <div class="content-header">
                 <span>專案管理</span> &gt; <span>專案: {{ $result['project']->title }}</span> &gt; <label>任務新增</label>
             </div>
-            <form method='post' action='/member/project/task/{{ $result['projectId'] }}/create' class='form1'>
+            <form method='post' action='/member/project/task/{{ $result['projectId'] }}/edit/{{ $result['taskId'] }}' class='form1'>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                 <h5>任務名稱:</h5>
                 <p>
-                    <input type="text" name="name" id="name" required />
+                    <input type="text" name="name" id="name" required value="{{ $result['task']->name }}"/>
                     <label for="name" class="error col-xs-12"></label>
                 </p>
                 <h5>開始日期:</h5>
                 <p>
-                    <input type="date" name="start" id="start" required />
+                    <input type="date" name="start" id="start" required value="{{ $result['task']->start }}" />
                     <label for="start" class="error col-xs-12"></label>
                 </p>
                 <h5>結束日期:</h5>
                 <p>
-                    <input type="date" name="end" id="end" />
+                    <input type="date" name="end" id="end" value="{{ $result['task']->end }}" />
                     <label for="end" ></label>
                 </p>
                 <h5>開發時數:</h5>
                 <p>
-                    <input type="number" name="hours" />
+                    <input type="number" name="hours" value="{{ $result['task']->hours }}" />
                 </p>
                 <h5>開發分鐘:</h5>
                 <p>
-                    <input type="number" name="minutes" />
+                    <input type="number" name="minutes" value="{{ $result['task']->minutes }}" />
                 </p>
                 <h5>描述:</h5>
                 <p>
-                    <textarea name="desc"></textarea>
+                    <textarea name="desc">{{ $result['task']->desc }}</textarea>
                 </p>
                 <p class="loginBtnP"> <button class="btn">儲存</button> </p>
             </form>

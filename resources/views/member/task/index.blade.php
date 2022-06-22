@@ -19,6 +19,50 @@
                     <a href="/member/project/task/{{ $result['projectId'] }}/create" class="btn-style1">新增</a>
                 </div>
             </div>
+            <table class="table1">
+                <thead>
+                    <tr>
+                        <td>名稱</td>
+                        <td>開始日期</td>
+                        <td>結束日期</td>
+                        <td>時數</td>
+                        <td>分鐘數</td>
+                        <td>建立日期</td>
+                        <td>修改日期</td>
+                        <td>操作</td>
+                    </tr>
+                </thead>
+                <tbody>
+                @if(isset($result['tasks']))
+                @foreach($result['tasks'] as $task)
+                    <tr>
+                        <td>{{ $task->name }}</td>
+                        <td>{{ $task->start }}</td>
+                        <td>{{ $task->end }}</td>
+                        <td>{{ $task->hours }}</td>
+                        <td>{{ $task->minutes }}</td>
+                        <td>{{ $task->created_at }}</td>
+                        <td>{{ $task->updated_at }}</td>
+                        <td>
+                            <a href='/member/project/task/{{ $result['projectId'] }}/edit/{{ $task->id }}' class="glyphicon glyphicon-pencil" alt="任務編輯"></a>
+                            <a href='/member/project/task/{{ $result['projectId'] }}/remove/{{ $task->id }}' class="glyphicon glyphicon-remove del" alt="任務刪除"></a>
+                        </td>
+                    </tr>
+                @endforeach
+                @endif
+                </tbody>
+            </table>
+            <div class="pagination paginationCenter">
+            @if(isset($result['amount']))
+            @for($i = 0; $i < ceil($result['amount'] / $result['offset']); ++$i)
+                @if(($i+1) == $result['nowPage'])
+                <label>{{ $i+1 }}</label>
+                @elseif(($i+1) != $result['nowPage'] && abs($i+1-$result['nowPage']) < 5)
+                <a href="/member/project/task/index?nowPage={{ $i+1 }}&{{ http_build_query($params) }}">{{ $i+1 }}</a>
+                @endif
+            @endfor
+            @endif
+            </div>
         </div>
 @include('member.layout.footer')
     </body>
