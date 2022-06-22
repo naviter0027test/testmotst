@@ -54,4 +54,18 @@ class TaskRepository
             throw new Exception("任務:$id 不存在");
         return $task;
     }
+
+    public function update($id, $params) {
+        $task = Task::where('id', $id)->first();
+        if(isset($task->id) == false)
+            throw new Exception("專案:$id 不存在");
+
+        $task->name = $params['name'];
+        $task->start = $params['start'];
+        $task->hours = $params['hours'];
+        $task->minutes = $params['minutes'];
+        $task->desc = $params['desc'];
+        $task->updated_at = date('Y-m-d H:i:s');
+        $task->save();
+    }
 }

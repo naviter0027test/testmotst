@@ -117,6 +117,27 @@ class TaskController extends Controller
     }
 
     public function update(Request $request, $projectId, $taskId) {
+        $member = Session::get('member');
+        $params = $request->all();
+        $result = [
+            'result' => true,
+            'msg' => 'success',
+            'projectId' => $projectId,
+            'taskId' => $taskId,
+        ];
+        try {
+            $projectRepository = new ProjectRepository();
+            $result['project'] = $projectRepository->getById($projectId);
+
+            $taskRepository = new TaskRepository();
+            $taskRepository->update($taskId, $params);
+        }
+        catch(Exception $e) {
+            $result['result'] = false;
+            $result['msg'] = $e->getMessage();
+        }
+        return view('member.task.proccess', ['member' => $member, 'result' => $result]);
+
     }
 
     public function remove(Request $request, $projectId, $taskId) {
