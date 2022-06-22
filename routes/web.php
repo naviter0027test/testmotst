@@ -36,5 +36,9 @@ Route::group(['prefix' => 'member', 'middleware' => ['check.member']], function(
         Route::get('remove/{id}', 'Member\ProjectController@remove');
         Route::get('edit/{id}', 'Member\ProjectController@edit');
         Route::post('edit/{id}', 'Member\ProjectController@update');
+
+        Route::group(['prefix' => 'task'], function() {
+            Route::get('index/{projectId}', 'Member\TaskController@index');
+        });
     });
 });
