@@ -46,4 +46,23 @@ class ProjectRepository
     public function remove($id) {
         Project::where('id', $id)->delete();
     }
+
+    public function getById($id) {
+        $project = Project::where('id', $id)->first();
+        if(isset($project->id) == false)
+            throw new Exception("專案:$id 不存在");
+        return $project;
+    }
+
+    public function update($id, $params) {
+        $project = Project::where('id', $id)->first();
+        if(isset($project->id) == false)
+            throw new Exception("專案:$id 不存在");
+
+        $project->title = $params['title'];
+        $project->isPublic = $params['isPublic'];
+        $project->requirement = $params['requirement'];
+        $project->updated_at = date('Y-m-d H:i:s');
+        $project->save();
+    }
 }
