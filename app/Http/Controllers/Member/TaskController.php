@@ -157,4 +157,30 @@ class TaskController extends Controller
         }
         return view('member.task.proccess', ['member' => $member, 'result' => $result]);
     }
+
+    public function gantt(Request $request, $projectId) {
+        $member = Session::get('member');
+        $result = [
+            'result' => true,
+            'msg' => 'success',
+            'projectId' => $projectId,
+        ];
+        try {
+            $projectRepository = new ProjectRepository();
+            $result['project'] = $projectRepository->getById($projectId);
+        }
+        catch(Exception $e) {
+            $result['result'] = false;
+            $result['msg'] = $e->getMessage();
+            return view('member.task.proccess', ['member' => $member, 'result' => $result]);
+        }
+        return view('member.task.gantt', ['member' => $member, 'result' => $result]);
+    }
+
+    public function ganttJson(Request $request, $projectId) {
+
+        $taskRepository = new TaskRepository();
+        $result = $taskRepository->getGanttByProjectId($projectId);
+        return json_encode($result);
+    }
 }

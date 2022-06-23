@@ -17,6 +17,7 @@
                 <div class="operation-panel">
                     <a href="javascript:history.go(-1);" class="btn-style2">返回</a>
                     <a href="/member/project/task/{{ $result['projectId'] }}/create" class="btn-style1">新增</a>
+                    <a href="/member/project/task/{{ $result['projectId'] }}/gantt" class="btn-style3">甘特圖</a>
                 </div>
             </div>
             <table class="table1">

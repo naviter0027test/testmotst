@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use Illuminate\Support\Facades\Storage;
+use App\Project;
 use App\Task;
 use Exception;
 use Config;
@@ -58,14 +59,42 @@ class TaskRepository
     public function update($id, $params) {
         $task = Task::where('id', $id)->first();
         if(isset($task->id) == false)
-            throw new Exception("專案:$id 不存在");
+            throw new Exception("任務:$id 不存在");
 
         $task->name = $params['name'];
         $task->start = $params['start'];
+        $task->end = $params['end'];
         $task->hours = $params['hours'];
         $task->minutes = $params['minutes'];
         $task->desc = $params['desc'];
         $task->updated_at = date('Y-m-d H:i:s');
         $task->save();
+    }
+
+    public function getGanttByProjectId($projectId) {
+        $project = Project::where('id', $projectId)->first();
+        if(isset($project->id) == false)
+            throw new Exception("專案:$id 不存在");
+        $projectGantt = [];
+
+        $tasks = Task::where('projectId', $projectId)
+            ->orderBy('start', 'asc')->get();
+        foreach($tasks as $task) {
+            $t = [];
+            $t['name'] = $task->name;
+            $t['desc'] = $task->desc;
+            $t['id'] = $task->id;
+            $t['values'] = [];
+
+            $v = [];
+            $v['from'] = $task->start;
+            $v['to'] = $task->end;
+            $v['label'] = $task->name;
+            $v['desc'] = $task->start. " 到 ". $task->end. "<br />". nl2br($task->desc);
+
+            $t['values'][] = $v;
+            $projectGantt[] = $t;
+        }
+        return $projectGantt;
     }
 }

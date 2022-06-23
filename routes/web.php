@@ -44,6 +44,8 @@ Route::group(['prefix' => 'member', 'middleware' => ['check.member']], function(
             Route::get('{projectId}/edit/{taskId}', 'Member\TaskController@edit');
             Route::post('{projectId}/edit/{taskId}', 'Member\TaskController@update');
             Route::get('{projectId}/remove/{taskId}', 'Member\TaskController@remove');
+            Route::get('{projectId}/gantt', 'Member\TaskController@gantt');
+            Route::get('{projectId}/gantt/json', 'Member\TaskController@ganttJson');
         });
     });
 });
