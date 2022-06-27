@@ -183,4 +183,11 @@ class TaskController extends Controller
         $result = $taskRepository->getGanttByProjectId($projectId);
         return json_encode($result);
     }
+
+    public function ganttAllJson(Request $request) {
+
+        $taskRepository = new TaskRepository();
+        $result = $taskRepository->getGanttAll();
+        return json_encode($result);
+    }
 }

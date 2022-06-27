@@ -81,8 +81,32 @@ class TaskRepository
             ->orderBy('start', 'asc')->get();
         foreach($tasks as $task) {
             $t = [];
-            $t['name'] = $task->name;
-            $t['desc'] = $task->desc;
+            $t['name'] = $project->title;
+            $t['desc'] = $task->name;
+            $t['id'] = $task->id;
+            $t['values'] = [];
+
+            $v = [];
+            $v['from'] = $task->start;
+            $v['to'] = $task->end;
+            $v['label'] = $task->name;
+            $v['desc'] = $task->start. " 到 ". $task->end. "<br />". nl2br($task->desc);
+
+            $t['values'][] = $v;
+            $projectGantt[] = $t;
+        }
+        return $projectGantt;
+    }
+
+    public function getGanttAll() {
+        $tasks = Task::leftJoin('Project', 'Project.id', '=', 'Task.projectId')
+            ->orderBy('start', 'asc')
+            ->select(['Task.*', 'Project.title'])
+            ->get();
+        foreach($tasks as $task) {
+            $t = [];
+            $t['name'] = $task->title;
+            $t['desc'] = $task->name;
             $t['id'] = $task->id;
             $t['values'] = [];
 

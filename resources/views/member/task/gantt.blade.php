@@ -33,9 +33,10 @@
     $(document).ready(function() {
         $('.gantt').gantt({
             'source': "/member/project/task/{{ $result['project']->id }}/gantt/json",
-            'scale': "weeks",
+            'scale': "days",
             'maxScale': "months",
             'minScale': "days",
+            'itemsPerPage': 16,
             'onItemClick': function(data) {
                 console.log(data);
             },
