@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/member/login');
 });
 
 Route::group(['prefix' => 'member', 'middleware' => ['check.member']], function() {
