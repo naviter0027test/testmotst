@@ -17,7 +17,41 @@
                     <a href="/member/content/create" class="btn-style1">新增</a>
                 </div>
             </div>
-            <div class="">
+            <table class="table1">
+                <thead>
+                    <tr>
+                        <td>標題</td>
+                        <td>建立日期</td>
+                        <td>修改日期</td>
+                        <td>操作</td>
+                    </tr>
+                </thead>
+                <tbody>
+                @if(isset($result['contents']))
+                @foreach($result['contents'] as $content)
+                    <tr>
+                        <td>{{ $content->title }}</td>
+                        <td>{{ $content->created_at }}</td>
+                        <td>{{ $content->updated_at }}</td>
+                        <td>
+                            <a href='/member/content/edit/{{ $content->id }}' class="glyphicon glyphicon-pencil" alt="內容編輯"></a>
+                            <a href='/member/content/remove/{{ $content->id }}' class="glyphicon glyphicon-remove del" alt="內容刪除"></a>
+                        </td>
+                    </tr>
+                @endforeach
+                @endif
+                </tbody>
+            </table>
+            <div class="pagination paginationCenter">
+            @if(isset($result['amount']))
+            @for($i = 0; $i < ceil($result['amount'] / $result['offset']); ++$i)
+                @if(($i+1) == $result['nowPage'])
+                <label>{{ $i+1 }}</label>
+                @elseif(($i+1) != $result['nowPage'] && abs($i+1-$result['nowPage']) < 5)
+                <a href="/member/content/?nowPage={{ $i+1 }}&{{ http_build_query($params) }}">{{ $i+1 }}</a>
+                @endif
+            @endfor
+            @endif
             </div>
         </div>
 @include('member.layout.footer')

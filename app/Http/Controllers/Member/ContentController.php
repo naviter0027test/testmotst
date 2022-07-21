@@ -14,6 +14,8 @@ class ContentController extends Controller
     public function index(Request $request) {
         $member = Session::get('member');
         $params = $request->all();
+        $params['nowPage'] = isset($params['nowPage']) ? $params['nowPage'] : 1;
+        $params['offset'] = isset($params['offset']) ? $params['offset'] : 10;
         $validate = Validator::make($request->all(), [
             'nowPage' => 'integer',
             'offset' => 'integer',
@@ -30,6 +32,11 @@ class ContentController extends Controller
             'msg' => 'success',
         ];
         try {
+            $contentRepository = new ContentRepository();
+            $result['contents'] = $contentRepository->lists($params);
+            $result['amount'] = $contentRepository->listsAmount($params);
+            $result['nowPage'] = $params['nowPage'];
+            $result['offset'] = $params['offset'];
         }
         catch(Exception $e) {
             $result['result'] = false;
