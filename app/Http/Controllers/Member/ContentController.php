@@ -79,4 +79,57 @@ class ContentController extends Controller
         }
         return view('member.proccess', ['member' => $member, 'result' => $result]);
     }
+
+    public function remove($id) {
+        $member = Session::get('member');
+        $result = [
+            'result' => true,
+            'msg' => 'success',
+        ];
+        try {
+            $contentRepository = new ContentRepository();
+            $contentRepository->remove($id);
+        }
+        catch(Exception $e) {
+            $result['result'] = false;
+            $result['msg'] = $e->getMessage();
+        }
+        return view('member.proccess', ['member' => $member, 'result' => $result]);
+    }
+
+    public function edit(Request $request, $id) {
+        $member = Session::get('member');
+        $result = [
+            'result' => true,
+            'msg' => 'success',
+        ];
+        try {
+            $contentRepository = new ContentRepository();
+            $content = $contentRepository->getById($id);
+        }
+        catch(Exception $e) {
+            $result['result'] = false;
+            $result['msg'] = $e->getMessage();
+            return view('member.proccess', ['member' => $member, 'result' => $result]);
+        }
+        return view('member.content.edit', ['member' => $member, 'content' => $content]);
+    }
+
+    public function update(Request $request, $id) {
+        $member = Session::get('member');
+        $params = $request->all();
+        $result = [
+            'result' => true,
+            'msg' => 'success',
+        ];
+        try {
+            $contentRepository = new ContentRepository();
+            $content = $contentRepository->update($id, $params);
+        }
+        catch(Exception $e) {
+            $result['result'] = false;
+            $result['msg'] = $e->getMessage();
+        }
+        return view('member.proccess', ['member' => $member, 'result' => $result]);
+    }
 }

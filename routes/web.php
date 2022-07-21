@@ -54,5 +54,8 @@ Route::group(['prefix' => 'member', 'middleware' => ['check.member']], function(
         Route::get('index', 'Member\ContentController@index');
         Route::get('create', 'Member\ContentController@createPage');
         Route::post('create', 'Member\ContentController@create');
+        Route::get('remove/{id}', 'Member\ContentController@remove');
+        Route::get('edit/{id}', 'Member\ContentController@edit');
+        Route::post('edit/{id}', 'Member\ContentController@update');
     });
 });

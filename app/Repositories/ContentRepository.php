@@ -35,4 +35,26 @@ class ContentRepository
         $contentQuery = Content::orderBy('created_at', 'desc');
         return $contentQuery->count();
     }
+
+    public function remove($id) {
+        Content::where('id', $id)->delete();
+    }
+
+    public function getById($id) {
+        $content = Content::where('id', $id)->first();
+        if(isset($content->id) == false)
+            throw new Exception("專案:$id 不存在");
+        return $content;
+    }
+
+    public function update($id, $params) {
+        $content = Content::where('id', $id)->first();
+        if(isset($content->id) == false)
+            throw new Exception("專案:$id 不存在");
+
+        $content->title = $params['title'];
+        $content->content = $params['content'];
+        $content->updated_at = date('Y-m-d H:i:s');
+        $content->save();
+    }
 }
