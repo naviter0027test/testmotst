@@ -49,4 +49,10 @@ Route::group(['prefix' => 'member', 'middleware' => ['check.member']], function(
             Route::get('{projectId}/gantt/json', 'Member\TaskController@ganttJson');
         });
     });
+
+    Route::group(['prefix' => 'content'], function() {
+        Route::get('index', 'Member\ContentController@index');
+        Route::get('create', 'Member\ContentController@createPage');
+        Route::post('create', 'Member\ContentController@create');
+    });
 });

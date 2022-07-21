@@ -15,6 +15,10 @@
         專案管理</a>
     </div>
     <div class="menu1">
+        <a href="/member/content/index" class="{{ strpos(\Request::path(), 'member/content') === false ? '' : 'clicked' }} glyphicon glyphicon-file">
+        內容管理</a>
+    </div>
+    <div class="menu1">
         <a href="/member/logout" class="glyphicon glyphicon-share logout">
         登出</a>
     </div>
