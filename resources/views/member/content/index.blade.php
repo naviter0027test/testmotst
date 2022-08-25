@@ -48,7 +48,7 @@
                 @if(($i+1) == $result['nowPage'])
                 <label>{{ $i+1 }}</label>
                 @elseif(($i+1) != $result['nowPage'] && abs($i+1-$result['nowPage']) < 5)
-                <a href="/member/content/?nowPage={{ $i+1 }}&{{ http_build_query($params) }}">{{ $i+1 }}</a>
+                <a href="/member/content/index?nowPage={{ $i+1 }}&{{ http_build_query($result['params']) }}">{{ $i+1 }}</a>
                 @endif
             @endfor
             @endif

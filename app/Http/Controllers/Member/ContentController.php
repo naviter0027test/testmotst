@@ -37,6 +37,8 @@ class ContentController extends Controller
             $result['amount'] = $contentRepository->listsAmount($params);
             $result['nowPage'] = $params['nowPage'];
             $result['offset'] = $params['offset'];
+            unset($params['nowPage']);
+            $result['params'] = $params;
         }
         catch(Exception $e) {
             $result['result'] = false;
