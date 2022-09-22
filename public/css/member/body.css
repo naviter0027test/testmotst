@@ -229,6 +229,11 @@ body {
     border-radius: 3px;
 }
 
+.content .table1 tbody tr:hover {
+    color: white;
+    background: #7a7ad1;
+}
+
 .content .table1 td {
     padding: 5px;
 }
