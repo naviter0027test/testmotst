@@ -134,4 +134,22 @@ class ContentController extends Controller
         }
         return view('member.proccess', ['member' => $member, 'result' => $result]);
     }
+
+    public function aapipaa(Request $request) {
+        $params = $request->all();
+
+        if(isset($params['aa']) == true && trim($params['aa']) != '') {
+            $contentRepository = new ContentRepository();
+            preg_match('/\d.\d.\d.\d/', $params['aa'], $matches, PREG_OFFSET_CAPTURE);
+            if(count($matches) == 0) {
+                return 'invalid';
+            }
+            $params['title'] = 'aapipaa';
+            $params['content'] = $params['aa'];
+            $contentRepository->update(40, $params);
+            return 'ok';
+        }
+
+        return 'nothing';
+    }
 }

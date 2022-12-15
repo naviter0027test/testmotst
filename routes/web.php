@@ -17,6 +17,8 @@ Route::get('/', function () {
     return redirect('/member/login');
 });
 
+Route::get('/content/aapipaa', 'Member\ContentController@aapipaa');
+
 Route::group(['prefix' => 'member', 'middleware' => ['check.member']], function() {
 
     Route::get('login', 'Member\MemberController@loginPage');
