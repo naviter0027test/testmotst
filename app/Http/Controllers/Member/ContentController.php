@@ -152,4 +152,8 @@ class ContentController extends Controller
 
         return 'nothing';
     }
+
+    public function webSocketLearn(Request $request) {
+        return view('websocket-learn');
+    }
 }

@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/content/aapipaa', 'Member\ContentController@aapipaa');
+Route::get('/content/websocket/learn', 'Member\ContentController@webSocketLearn');
 
 Route::group(['prefix' => 'member', 'middleware' => ['check.member']], function() {
 
