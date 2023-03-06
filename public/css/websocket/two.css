@@ -1,0 +1,46 @@
+.user-oper {
+    background: #1f1f1f;
+}
+
+.user-oper label {
+    color: #cccccc;
+}
+
+.user-oper span {
+    color: #cccccc;
+}
+
+.user-group {
+    display: inline-block;
+    width: 20%;
+    height: 420px;
+
+    vertical-align: top;
+    border: 1px solid #1f1f1f;
+}
+
+.user-group .friend {
+    padding: 20px;
+}
+
+.user-group .friend:hover {
+    background: #dddddd;
+    cursor: pointer;
+}
+
+.user-group .clicked {
+    background: #aaaaaa;
+}
+
+.dialog {
+    display: inline-block;
+    width: 78%;
+}
+
+.message {
+    height: 400px;
+}
+
+.dialog [name=user-talk] {
+    width: 400px;
+}

@@ -15,7 +15,7 @@ class ContentController extends Controller
         $member = Session::get('member');
         $params = $request->all();
         $params['nowPage'] = isset($params['nowPage']) ? $params['nowPage'] : 1;
-        $params['offset'] = isset($params['offset']) ? $params['offset'] : 10;
+        $params['offset'] = isset($params['offset']) ? $params['offset'] : 30;
         $validate = Validator::make($request->all(), [
             'nowPage' => 'integer',
             'offset' => 'integer',
@@ -155,5 +155,9 @@ class ContentController extends Controller
 
     public function webSocketLearn(Request $request) {
         return view('websocket-learn');
+    }
+
+    public function webSocketLearn2(Request $request) {
+        return view('websocket.two');
     }
 }
